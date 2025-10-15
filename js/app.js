@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING 
   const fortuneArea = document.getElementById('fortuneArea');  /* THE SECTION WE SHOW AFTER SIGNUP. */
   const fortuneBtn = document.getElementById('fortuneBtn');    /* THE BUTTON THAT CRACKS THE COOKIE. */
   const fortuneText = document.getElementById('fortuneText');  /* WHERE THE FORTUNE TEXT SHOWS UP. */
-  const historyList = document.getElementById('history');      /* <OL> THAT KEEPS LAST 10 FORTUNES. */
 
-  /* ALSO THE INPUTS. WE *READ* THEM BUT WE DON’T SEND PRIVATE INFORMATION ANYWHERE CUZ APPARENTLY ILLEGAL WHAT? MILF FINDER DREAMS GONE. */
+  /* ALSO THE INPUTS. WE *READ* THEM BUT WE DON’T SEND PRIVATE INFORMATION ANYWHERE CUZ APPARENTLY ILLEGAL WHAT? MILF FINDER DREAMS GONE.
   const nameInput = document.getElementById('name');
   const cityInput = document.getElementById('city');
   const ageInput  = document.getElementById('age');
+  IMMA IMPLEMENT THESE TRACKERS ONLY IF I HAVE TIME... REALISED PIECE OF SHIT GON TAKE ME HOURS
+
+   */
 
   const fortunes = [ '今日風平浪靜，正好把小事做完。', /* PRODULY PRESENTED BY CHATGPT, IDK WHAT THEY MEAN, COULD BE RACIALLY MOTIVATED */
     '別急著否定，先喝水再決定。',
@@ -27,4 +29,22 @@ document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING 
     '開始通常很醜，但開始了就對了。',
     '少滑一分鐘，多讀一頁。',
     '點子夠用了，出手才算數。',
-    '補水。你的腦袋像乾梅子。']:
+    '補水。你的腦袋像乾梅子。'
+  ];
+
+  function randIndex(len) { /* RANDOM INDEX THAT NEVER GOES OUT OF BOUNDS. */
+    return Math.floor(Math.random() * len);
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();   /* stops page reload */
+    form.hidden = true;       /* hides form */
+    fortuneArea.hidden = false; /* shows fortune section */
+  });
+
+  fortuneBtn.addEventListener('click', () => {
+    const pick = fortunes[randIndex(fortunes.length)]; /* pick random fortune */
+    fortuneText.textContent = pick; /* show it in html AND THEN BOOM. FUCKING FREE FORTUNE  */
+  });
+
+});
