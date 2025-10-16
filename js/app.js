@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING SO THE DOM EXISTS. */
 
   /* GRAB THE STUFF WE ACTUALLY USE. ZERO MYSTERY NODES. */
-  const form = document.getElementById('signup');              /* THE FORM WE SUBMIT (CLICK OR ENTER). */
-  const fortuneArea = document.getElementById('fortuneArea');  /* THE SECTION WE SHOW AFTER SIGNUP. */
-  const fortuneBtn = document.getElementById('fortuneBtn');    /* THE BUTTON THAT CRACKS THE COOKIE. */
-  const fortuneText = document.getElementById('fortuneText');  /* WHERE THE FORTUNE TEXT SHOWS UP. */
+  const form = document.getElementById('signup');              /* THE FORM. */
+  const fortuneArea = document.getElementById('fortuneArea');  /* THE AFTER SIGNUP. */
+  const fortuneBtn = document.getElementById('fortuneBtn');    /* THE BUTTON */
+  const fortuneText = document.getElementById('fortuneText');  /* THE FORTUNE */
 
   /* ALSO THE INPUTS. WE *READ* THEM BUT WE DON’T SEND PRIVATE INFORMATION ANYWHERE CUZ APPARENTLY ILLEGAL WHAT? MILF FINDER DREAMS GONE.
   const nameInput = document.getElementById('name');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING 
 
   ];
 
-  function randIndex(len) { /* RANDOM INDEX THAT NEVER GOES OUT OF BOUNDS. */
+  function randIndex(len) { /* RANDOM INDEX THAT NEVER GOES OUT OF BOUNDS... RELEVANT FOR SOME REASON MY TINY BRAIN NO COMPRENDE */
     return Math.floor(Math.random() * len);
   }
 
