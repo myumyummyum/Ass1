@@ -1,26 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING SO THE DOM EXISTS. */
+
   /* GRAB THE STUFF WE ACTUALLY USE. ZERO MYSTERY NODES. */
-  const form = document.getElementById('fortuneForm') || document.getElementById('signup');
-  const fortuneArea = document.getElementById('fortune-area') || document.getElementById('fortuneArea');
-  const fortuneBtn = document.getElementById('fortuneBtn');
-  const fortuneText = document.getElementById('fortuneText');
+  const form = document.getElementById('fortuneForm');
+  const fortuneArea = document.getElementById('fortune-area');
 
-  if (form && fortuneArea) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault(); /* stops page reload */
-      form.hidden = true; /* hides form */
-      fortuneArea.hidden = false; /* shows fortune section */
-    });
-  }
-
-  if (fortuneBtn && fortuneText) {
-    fortuneBtn.addEventListener('click', () => {
-      const pick = fortunes[randIndex(fortunes.length)]; /* random fortune */
-      fortuneText.textContent = pick;
-    });
-  }
-
-  const fortunes = [ '今日風平浪靜，正好把小事做完。', /* PRODULY PRESENTED BY CHATGPT, IDK WHAT THEY MEAN, COULD BE RACIALLY MOTIVATED */
+  /* FORTUNES POOL (comments moved to // so bundlers don't sulk) */
+  const fortunes = [
+    '今日風平浪靜，正好把小事做完。', // proudly presented by chatgpt, idk what they mean
     '今天風沒有浪，但心裡像鍋湯。', // “Today wind no wave, but heart like soup pot.”
     '不要太快否定，先喝水看看靈魂。', // “Do not quick deny, drink water and see soul.”
     '消息快要出現，你腦子別亂跳舞。', // “Message soon appear, your brain don’t dance messy.”
@@ -37,37 +23,28 @@ document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING 
     '少滑手指，多看書讓腦不乾。', // “Less slide finger, more see book make brain not dry.”
     '想太多沒用，出手才算呼吸。', // “Think too much useless, only action count as breathing.”
     '喝水。你的腦子像曬過的梅乾。' // “Drink water. Your brain like dried sour plum in sun.”
-
   ];
 
-  function randIndex(len) { /* RANDOM INDEX THAT NEVER GOES OUT OF BOUNDS... RELEVANT FOR SOME REASON MY TINY BRAIN NO COMPRENDE */
+  /* RANDOM INDEX THAT NEVER GOES OUT OF BOUNDS */
+  function randIndex(len) {
     return Math.floor(Math.random() * len);
   }
 
+  /* SANITY CHECKS: bail early if DOM isn't as expected */
+  if (!form || !fortuneArea) {
+    console.warn('Missing #fortuneForm or #fortune-area. Check your HTML IDs.');
+    return;
+  }
+
+  /* SUBMIT HANDLER: generate and reveal fortune */
   form.addEventListener('submit', (event) => {
-    event.preventDefault();   /* stops page reload */
-    form.hidden = true;       /* hides form */
-    fortuneArea.hidden = false; /* shows fortune section */
+    event.preventDefault(); /* stops page reload */
+
+    const pick = fortunes[randIndex(fortunes.length)];
+    fortuneArea.textContent = pick; /* render the fortune */
+
+    /* hide form, show result */
+    form.style.display = 'none';
+    fortuneArea.style.display = 'block';
   });
-
-  fortuneBtn.addEventListener('click', () => {
-    const pick = fortunes[randIndex(fortunes.length)]; /* pick random fortune */
-    fortuneText.textContent = pick; /* show it in html AND THEN BOOM. FUCKING FREE FORTUNE  */
-  });
-
-  // Example: inside form submit handler
-  const fortuneForm = document.getElementById('fortuneForm');
-  const fortuneAreaNew = document.getElementById('fortune-area');
-
-  fortuneForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    // ... existing code to compute/generate fortune ...
-    // Set fortuneArea.innerHTML or textContent with the fortune
-    fortuneAreaNew.textContent = generatedFortune;
-
-    // Hide the form and reveal the fortune
-    fortuneForm.style.display = 'none';
-    fortuneAreaNew.style.display = 'block';
-  });
-
 });
