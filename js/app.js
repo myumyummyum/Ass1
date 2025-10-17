@@ -1,18 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING SO THE DOM EXISTS. */
-
   /* GRAB THE STUFF WE ACTUALLY USE. ZERO MYSTERY NODES. */
-  const form = document.getElementById('signup');              /* THE FORM. */
-  const fortuneArea = document.getElementById('fortuneArea');  /* THE AFTER SIGNUP. */
-  const fortuneBtn = document.getElementById('fortuneBtn');    /* THE BUTTON */
-  const fortuneText = document.getElementById('fortuneText');  /* THE FORTUNE */
+  const form = document.getElementById('fortuneForm') || document.getElementById('signup');
+  const fortuneArea = document.getElementById('fortune-area') || document.getElementById('fortuneArea');
+  const fortuneBtn = document.getElementById('fortuneBtn');
+  const fortuneText = document.getElementById('fortuneText');
 
-  /* ALSO THE INPUTS. WE *READ* THEM BUT WE DON’T SEND PRIVATE INFORMATION ANYWHERE CUZ APPARENTLY ILLEGAL WHAT? MILF FINDER DREAMS GONE.
-  const nameInput = document.getElementById('name');
-  const cityInput = document.getElementById('city');
-  const ageInput  = document.getElementById('age');
-  IMMA IMPLEMENT THESE TRACKERS ONLY IF I HAVE TIME... REALISED PIECE OF SHIT GON TAKE ME HOURS
+  if (form && fortuneArea) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); /* stops page reload */
+      form.hidden = true; /* hides form */
+      fortuneArea.hidden = false; /* shows fortune section */
+    });
+  }
 
-   */
+  if (fortuneBtn && fortuneText) {
+    fortuneBtn.addEventListener('click', () => {
+      const pick = fortunes[randIndex(fortunes.length)]; /* random fortune */
+      fortuneText.textContent = pick;
+    });
+  }
 
   const fortunes = [ '今日風平浪靜，正好把小事做完。', /* PRODULY PRESENTED BY CHATGPT, IDK WHAT THEY MEAN, COULD BE RACIALLY MOTIVATED */
     '今天風沒有浪，但心裡像鍋湯。', // “Today wind no wave, but heart like soup pot.”
@@ -47,6 +53,21 @@ document.addEventListener('DOMContentLoaded', () => { /* YES WE WRAP EVERYTHING 
   fortuneBtn.addEventListener('click', () => {
     const pick = fortunes[randIndex(fortunes.length)]; /* pick random fortune */
     fortuneText.textContent = pick; /* show it in html AND THEN BOOM. FUCKING FREE FORTUNE  */
+  });
+
+  // Example: inside form submit handler
+  const fortuneForm = document.getElementById('fortuneForm');
+  const fortuneAreaNew = document.getElementById('fortune-area');
+
+  fortuneForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // ... existing code to compute/generate fortune ...
+    // Set fortuneArea.innerHTML or textContent with the fortune
+    fortuneAreaNew.textContent = generatedFortune;
+
+    // Hide the form and reveal the fortune
+    fortuneForm.style.display = 'none';
+    fortuneAreaNew.style.display = 'block';
   });
 
 });

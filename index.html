@@ -7,13 +7,15 @@
 
   <link rel="stylesheet" href="./css/style.css">
 
+  <!--new serif font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" />
+
   <meta name="description" content="skol assigment">
   <meta property="og:title" content="THE BEST WEBSITE IN THE WORLD. GOOGLE 2">
   <meta property="og:type" content="website">
   <meta property="og:url" content=""> <!--FELT CUTE MIGHT REMOVE LATER-->
   <meta property="og:image" content=""> <!--FELT CUTE MIGHT REMOVE LATER-->
-   <meta property="og:image:alt" content=""> <!--FELT CUTE MIGHT REMOVE LATER-->
-
+  <meta property="og:image:alt" content=""> <!--FELT CUTE MIGHT REMOVE LATER-->
 
   <link rel="icon" href="./favicon.ico" sizes="any">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
@@ -23,37 +25,29 @@
 </head>
 <body>
 
-<header>
-  <h1>Machine that makes destiny of Chinese biscuit</h1>
-</header>
+<!-- W R A P P I N G -->
+<div class="main-container">
+  <!-- Main heading uses the new text -->
+  <h1>Chinese Fortune Cookie Generator</h1>
 
-<main>
-  <form id="signup"><!--WHOLE FORM IS REQUIRED FOR DATA COLLECTION PURPOSES. FUCK PRIVACY.-->
-    <div>
-      <label for="name">Name</label>
-      <input id="name" name="name" placeholder="Name" type="text" autocomplete="name" required>
-    </div>
-    <div>
-      <label for="city">City</label>
-      <input id="city" name="city" placeholder="City" type="text" autocomplete="address-level2" required>
-    </div>
-    <div>
-      <label for="age">Age</label>
-      <input id="age" name="age" type="number" min="13" max="120" step="1" inputmode="numeric" required> <!--Underage allowed-->
-    </div>
-    <button id="startBtn" type="submit">Start</button>
+  <h2>Enter your details to receive a fortune</h2>
+
+  <form id="fortuneForm">
+    <!-- … form fields … -->
+    <input type="text" name="name" placeholder="Your name" />
+    <!-- other inputs go here -->
+    <input type="submit" value="Get my fortune" />
   </form>
 
-  <section id="fortuneArea" hidden aria-hidden="true">
-    <h2 id="fortuneHeading">Your fortune</h2>
-    <button id="fortuneBtn" type="button" aria-describedby="fortuneHeading">Break the biscuit to reveal fate 🥠</button> <!--check if emoji unicode supported-->
-    <p id="fortuneText" role="status" aria-live="polite"></p>
-    <ol id="history"></ol>
-  </section>
-</main>
+  <div id="fortune-area"></div>
+</div>
+
+<header>
+  <h1>CHINESE FORTUNE COOKIE GENERATOR (FREE NO SCAM)</h1>
+</header>
+ö'Ä
 
 <footer></footer>
-
 
 <script src="./js/app.js"></script> <!--piece of shit apparently needs to be at the bottom for compability-->
 <noscript>This site needs JavaScript. The cookie needs it.</noscript><!--I block JS on my devices so imma add this for my own sanity dawg-->
